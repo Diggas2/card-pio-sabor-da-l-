@@ -243,7 +243,7 @@
     <div class="dish-card">
       <h3>Carne de sol</h3>
       <p>Arroz ou baião, farofa, mandioca, banana frita e salada.</p>
-      <div class="prices"><span>1 pessoa R$ 40,00</span><span>2 pessoas R$ 75,00</span></div>
+      <div class="prices"><span>1 pessoa R$ 40,00</span></div>
     </div>
 
     <div class="dish-card">
@@ -255,7 +255,7 @@
     <div class="dish-card">
       <h3>Picanha</h3>
       <p>Arroz ou baião, farofa, mandioca, banana frita e salada.</p>
-      <div class="prices"><span>1 pessoa R$ 40,00</span><span>2 pessoas R$ 75,00</span></div>
+      <div class="prices"><span>1 pessoa R$ 40,00</span></div>
     </div>
   </section>
 
