@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabor da Lu — Cardápio da Noite</title>
+<style>
+  :root{
+    --ink:#1c1408;
+    --paper:#fbf3df;
+    --gold:#f2b705;
+    --gold-deep:#c98f02;
+    --rust:#a63c06;
+    --rust-deep:#7c2c04;
+    --line:#e3d3a1;
+    --card:#fffaee;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:520px;margin:0 auto;padding-bottom:3rem;}
+
+  header{
+    background:var(--gold);
+    padding:2.2rem 1.5rem 2.6rem;
+    position:relative;
+    text-align:center;
+    clip-path:polygon(0 0,100% 0,100% 92%,97% 100%,94% 91%,91% 100%,88% 91%,85% 100%,82% 91%,79% 100%,76% 91%,73% 100%,70% 91%,67% 100%,64% 91%,61% 100%,58% 91%,55% 100%,52% 91%,49% 100%,46% 91%,43% 100%,40% 91%,37% 100%,34% 91%,31% 100%,28% 91%,25% 100%,22% 91%,19% 100%,16% 91%,13% 100%,10% 91%,7% 100%,4% 91%,0 100%);
+  }
+  header .wordmark{
+    font-size:2.7rem;
+    font-weight:900;
+    letter-spacing:1px;
+    line-height:1;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0;
+  }
+  header .script{
+    font-family:Georgia,"Times New Roman",serif;
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--rust-deep);
+    margin:.5rem 0 0;
+  }
+
+  .info{
+    margin-top:-1.4rem;
+    padding:0 1.5rem;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.1rem 1.3rem;
+    box-shadow:0 6px 0 var(--ink);
+    font-size:.92rem;
+    line-height:1.55;
+  }
+  .info-card .row{display:flex;gap:.6rem;align-items:flex-start;margin:.15rem 0;}
+  .info-card .row b{font-weight:700;}
+
+  .cta{
+    display:block;
+    margin:1.1rem 1.5rem 0;
+    background:var(--rust);
+    color:#fff5e6;
+    text-align:center;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    padding:.85rem 1rem;
+    border-radius:12px;
+    letter-spacing:.2px;
+  }
+
+  nav.chips{
+    display:flex;
+    gap:.5rem;
+    overflow-x:auto;
+    padding:1.4rem 1.5rem .3rem;
+    scrollbar-width:none;
+  }
+  nav.chips::-webkit-scrollbar{display:none;}
+  nav.chips a{
+    flex:0 0 auto;
+    background:var(--ink);
+    color:var(--gold);
+    font-size:.78rem;
+    font-weight:700;
+    text-decoration:none;
+    padding:.5rem 1rem;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  section{padding:1.6rem 1.5rem 0;scroll-margin-top:1rem;}
+  section h2{
+    font-size:1.3rem;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    margin:0 0 .2rem;
+    border-bottom:3px solid var(--gold);
+    display:inline-block;
+    padding-bottom:.15rem;
+  }
+  section .note{
+    font-size:.82rem;
+    color:var(--rust-deep);
+    font-style:italic;
+    margin:.5rem 0 1rem;
+  }
+
+  .item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:.75rem;
+    padding:.62rem 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .item:last-child{border-bottom:none;}
+  .item .name{font-size:.96rem;font-weight:600;}
+  .item .price{font-size:.96rem;font-weight:800;color:var(--rust-deep);white-space:nowrap;}
+
+  .subhead{
+    font-size:.78rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    color:var(--gold-deep);
+    background:var(--ink);
+    display:inline-block;
+    padding:.25rem .7rem;
+    border-radius:6px;
+    margin:1rem 0 .3rem;
+  }
+
+  .dish-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:.9rem 1.1rem;
+    margin-bottom:.8rem;
+  }
+  .dish-card h3{margin:0 0 .3rem;font-size:1rem;font-weight:800;}
+  .dish-card p{margin:0 0 .55rem;font-size:.85rem;color:#4a3c22;}
+  .dish-card .prices{display:flex;gap:1.2rem;font-size:.88rem;font-weight:700;}
+  .dish-card .prices span{color:var(--rust-deep);}
+
+  footer{
+    margin-top:2.2rem;
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:2rem 1.5rem;
+    clip-path:polygon(0 8%,3% 0,6% 9%,9% 0,12% 9%,15% 0,18% 9%,21% 0,24% 9%,27% 0,30% 9%,33% 0,36% 9%,39% 0,42% 9%,45% 0,48% 9%,51% 0,54% 9%,57% 0,60% 9%,63% 0,66% 9%,69% 0,72% 9%,75% 0,78% 9%,81% 0,84% 9%,87% 0,90% 9%,93% 0,96% 9%,100% 0,100% 100%,0 100%);
+  }
+  footer .phone{font-size:1.6rem;font-weight:900;color:var(--gold);letter-spacing:.5px;}
+  footer .addr{font-size:.85rem;margin-top:.4rem;opacity:.85;}
+  footer .taxa{font-size:.78rem;margin-top:.6rem;color:var(--rust);font-weight:700;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="wordmark">Sabor da Lu</p>
+    <p class="script">cardápio da noite</p>
+  </header>
+
+  <div class="info">
+    <div class="info-card">
+      <div class="row">📍 <span>Rua Doze de Outubro, 922 — Bairro Placas</span></div>
+      <div class="row">🌙 <span><b>Jantar</b> qua a sáb, 19h–23h</span></div>
+    </div>
+  </div>
+
+  <a class="cta" href="https://wa.me/5568999683454" target="_blank" rel="noopener">Pedir pelo WhatsApp — (68) 99968-3454</a>
+
+  <nav class="chips">
+    <a href="#especiais">Especiais</a>
+    <a href="#petiscos">Petiscos</a>
+    <a href="#alacarte">À la carte</a>
+    <a href="#bebidas">Bebidas</a>
+    <a href="#doces">Doces</a>
+  </nav>
+
+  <section id="especiais">
+    <h2>Especiais</h2>
+    <div class="item"><span class="name">Lasanha</span><span class="price">R$ 20,00</span></div>
+    <div class="item"><span class="name">Panqueca de carne/frango</span><span class="price">R$ 15,00</span></div>
+    <div class="item"><span class="name">Charuto no molho vermelho</span><span class="price">R$ 15,00</span></div>
+    <div class="item"><span class="name">Charuto no tucupi sem camarão</span><span class="price">R$ 15,00</span></div>
+    <div class="item"><span class="name">Charuto no tucupi com camarão</span><span class="price">R$ 20,00</span></div>
+    <div class="item"><span class="name">Tacacá sem camarão</span><span class="price">R$ 25,00</span></div>
+    <div class="item"><span class="name">Tacacá com camarão</span><span class="price">R$ 35,00</span></div>
+    <div class="item"><span class="name">Risoto de tucupi com camarão</span><span class="price">R$ 40,00</span></div>
+    <div class="item"><span class="name">Risoto de tucupi com rabo</span><span class="price">R$ 40,00</span></div>
+    <div class="item"><span class="name">Risoto de tucupi com rabo e camarão</span><span class="price">R$ 50,00</span></div>
+    <div class="item"><span class="name">Rabada no tucupi sem camarão</span><span class="price">R$ 35,00</span></div>
+    <div class="item"><span class="name">Rabada no tucupi com camarão</span><span class="price">R$ 40,00</span></div>
+    <div class="item"><span class="name">Sopa</span><span class="price">R$ 20,00</span></div>
+  </section>
+
+  <section id="petiscos">
+    <h2>Petiscos</h2>
+    <div class="item"><span class="name">Fritas</span><span class="price">R$ 25,00</span></div>
+    <div class="item"><span class="name">Torresmo</span><span class="price">R$ 25,00</span></div>
+    <div class="item"><span class="name">Tábua fria</span><span class="price">R$ 40,00</span></div>
+    <div class="item"><span class="name">Iscas de frango</span><span class="price">R$ 35,00</span></div>
+    <div class="item"><span class="name">Iscas de frango com fritas</span><span class="price">R$ 45,00</span></div>
+    <div class="item"><span class="name">Iscas de carne</span><span class="price">R$ 35,00</span></div>
+    <div class="item"><span class="name">Iscas de carne com fritas</span><span class="price">R$ 45,00</span></div>
+    <div class="item"><span class="name">Calabresa</span><span class="price">R$ 25,00</span></div>
+    <div class="item"><span class="name">Calabresa com fritas</span><span class="price">R$ 35,00</span></div>
+    <div class="item"><span class="name">Frango a passarinho</span><span class="price">R$ 35,00</span></div>
+    <div class="item"><span class="name">Frango a passarinho com fritas</span><span class="price">R$ 45,00</span></div>
+    <div class="item"><span class="name">Costelinha de tambaqui</span><span class="price">R$ 40,00</span></div>
+    <div class="item"><span class="name">Ovos de codorna (12 un)</span><span class="price">R$ 15,00</span></div>
+    <div class="subhead">Caldo de copo</div>
+    <div class="item"><span class="name">Feijão preto</span><span class="price">R$ 10,00</span></div>
+    <div class="item"><span class="name">Tucupi sem camarão</span><span class="price">R$ 10,00</span></div>
+    <div class="item"><span class="name">Tucupi com camarão</span><span class="price">R$ 15,00</span></div>
+  </section>
+
+  <section id="alacarte">
+    <h2>À la carte</h2>
+    <p class="note">Serve 1 ou 2 pessoas — acompanhamentos inclusos.</p>
+
+    <div class="dish-card">
+      <h3>Costelinha de tambaqui</h3>
+      <p>Arroz ou baião, farofa, banana e salada.</p>
+      <div class="prices"><span>1 pessoa R$ 35,00</span><span>2 pessoas R$ 65,00</span></div>
+    </div>
+
+    <div class="dish-card">
+      <h3>Carne de sol</h3>
+      <p>Arroz ou baião, farofa, mandioca, banana frita e salada.</p>
+      <div class="prices"><span>1 pessoa R$ 40,00</span><span>2 pessoas R$ 75,00</span></div>
+    </div>
+
+    <div class="dish-card">
+      <h3>Filé de frango grelhado</h3>
+      <p>Arroz, farofa, batata e salada.</p>
+      <div class="prices"><span>1 pessoa R$ 28,00</span><span>2 pessoas R$ 50,00</span></div>
+    </div>
+
+    <div class="dish-card">
+      <h3>Picanha</h3>
+      <p>Arroz ou baião, farofa, mandioca, banana frita e salada.</p>
+      <div class="prices"><span>1 pessoa R$ 40,00</span><span>2 pessoas R$ 75,00</span></div>
+    </div>
+  </section>
+
+  <section id="bebidas">
+    <h2>Bebidas</h2>
+    <div class="subhead">Refrigerantes</div>
+    <div class="item"><span class="name">Lata</span><span class="price">R$ 6,00</span></div>
+    <div class="item"><span class="name">600ml</span><span class="price">R$ 10,00</span></div>
+    <div class="item"><span class="name">1L</span><span class="price">R$ 10,00</span></div>
+    <div class="item"><span class="name">1,5L</span><span class="price">R$ 12,00</span></div>
+    <div class="item"><span class="name">2L</span><span class="price">R$ 15,00</span></div>
+
+    <div class="subhead">Água e sucos</div>
+    <div class="item"><span class="name">Água mineral</span><span class="price">R$ 3,00</span></div>
+    <div class="item"><span class="name">Água com gás</span><span class="price">R$ 5,00</span></div>
+    <div class="item"><span class="name">H2O</span><span class="price">R$ 8,00</span></div>
+    <div class="item"><span class="name">Suco 300ml</span><span class="price">R$ 12,00</span></div>
+    <div class="item"><span class="name">Suco 1L</span><span class="price">R$ 30,00</span></div>
+    <div class="item"><span class="name">Energético</span><span class="price">R$ 8,00</span></div>
+    <div class="item"><span class="name">Kina (energético)</span><span class="price">R$ 10,00</span></div>
+    <div class="item"><span class="name">Limoneto</span><span class="price">R$ 8,00</span></div>
+
+    <div class="subhead">Cervejas</div>
+    <div class="item"><span class="name">Long Neck</span><span class="price">R$ 12,00</span></div>
+    <div class="item"><span class="name">Antártica 600ml</span><span class="price">R$ 12,00</span></div>
+    <div class="item"><span class="name">Skol 600ml</span><span class="price">R$ 12,00</span></div>
+    <div class="item"><span class="name">Cabaré Ice</span><span class="price">R$ 15,00</span></div>
+    <div class="item"><span class="name">Original 600ml</span><span class="price">R$ 15,00</span></div>
+    <div class="item"><span class="name">Amistel</span><span class="price">R$ 14,00</span></div>
+    <div class="item"><span class="name">Stella 600ml</span><span class="price">R$ 20,00</span></div>
+    <div class="item"><span class="name">Heineken 600ml</span><span class="price">R$ 20,00</span></div>
+  </section>
+
+  <section id="doces">
+    <h2>Doces</h2>
+    <div class="item"><span class="name">Pudim</span><span class="price">R$ 8,00</span></div>
+    <div class="item"><span class="name">Cocadas</span><span class="price">R$ 6,00</span></div>
+  </section>
+
+  <footer>
+    <div class="phone">(68) 99968-3454</div>
+    <div class="addr">Rua Doze de Outubro, 922 — Placas</div>
+    <div class="taxa">Cobramos taxa de entrega</div>
+  </footer>
+
+</div>
+</body>
+</html>
